@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "next": "9.5.0",
+    "ol": "^6.4.2",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-alice-carousel": "^1.19.3",
+    "react-dom": "16.13.1",
+    "react-openlayers": "^0.3.0"
   }
 }

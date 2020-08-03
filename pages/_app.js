@@ -1,7 +1,7 @@
 import '../styles/globals.css'
+import 'react-alice-carousel/lib/alice-carousel.css'
 
-function MyApp({ Component, pageProps }) {
+
+export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
-
-export default MyApp

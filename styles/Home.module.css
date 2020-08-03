@@ -1,123 +1,355 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-.main {
-  padding: 5rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.center {
+  position: absolute;
+  left: 50%;
+  top: 0;
 }
 
-.footer {
+.header {
+  height: 73px;
+  background-color: #eae7de;
   width: 100%;
-  height: 100px;
-  border-top: 1px solid #eaeaea;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
+  position: fixed;
+  z-index: 10;
+  top: 0;
 }
 
-.footer img {
-  margin-left: 0.5rem;
+.header1 {
+  font-size: 18px;
+  font-weight: normal;
+
+  margin: 0;
+  position: absolute;
+  top: 24px;
+  left: 30px;
 }
 
-.footer a {
+.header2Left {
+  font-size: 18px;
+  font-weight: normal;
+
+  margin: 0;
+  position: absolute;
+  top: 24px;
+  left: 227px;
+}
+
+.header2Right {
+  font-size: 18px;
+  font-weight: normal;
+
+  width: 322px;
+  margin: 0;
+  position: absolute;
+  top: 24px;
+  left: 361px;
+}
+
+.offCanvas {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 342px;
+  background-color: #b6c3c3;
+  z-index: 20;
+
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: space-between;*/
+}
+
+.offCanvasOpen {
+  right: 0;
+}
+
+.offCanvasClosed {
+  left: 100%;
+}
+
+.menuButton {
+  width: 20px;
+  height: 15px;
+  padding: 8px;
+  box-sizing: content-box;
+  border: none;
+  position: fixed;
+  z-index: 30;
+  top: 19px;
+  right: 25px;
+  background: transparent;
+}
+
+.menuButtonActive {
+  transform: rotate(90deg);
+}
+
+.menuButtonBar {
+  background: black;
+  width: 20px;
+  height: 2px;
+  position: absolute;
+  left: 8px;
+}
+
+.menuButtonBar1 {
+  top: 7px;
+}
+
+.menuButtonBar2 {
+  top: 12px;
+}
+
+.menuButtonBar3 {
+  top: 17px;
+}
+
+.menuButtonBar4 {
+  top: 22px;
+}
+
+.siteNavPages {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
+
+  position: absolute;
+  top: 111px;
+  right: 33px;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.siteNavPageLink {
+  display: block;
+  line-height: 33px;
+  font-size: 17px;
+  text-transform: uppercase;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
+.contactLinks {
+  text-align: right;
+  position: absolute;
+  bottom: 33px;
+  right: 33px;
+}
+
+.contactLinks .link {
+  font-size: 18px;
+  line-height: 33px;
+}
+
+.link {
   text-decoration: underline;
 }
 
-.title {
+.main {
+  padding: 73px 0 300px;
+  background-color: #F7F5F0;
+}
+
+.outerGutter {
+  width: 1366px;
+  margin: 0 auto;
+  padding: 0 46px;
+}
+
+.innerGutter {
+  padding: 0 68px;
+  width: 998px;
+}
+
+.intro {
   margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+  font-size: 25px;
+  line-height: 35px;
+  padding-top: 60px;
+  font-weight: 100;
 }
 
-.title,
-.description {
-  text-align: center;
+.sidebarOuter {
+  position: fixed;
+  left: 50%;
+  top: 0;
 }
 
-.description {
-  line-height: 1.5;
-  font-size: 1.5rem;
+.sidebarInner {
+  position: absolute;
+  width: 276px;
+  left: 361px;
+  top: calc(73px + 60px);
 }
 
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+.pageNavUl {
+  text-transform: uppercase;
+  line-height: 33px;
 }
 
-.grid {
+.floatCard {
+  margin: 60px 0 0 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  max-width: 800px;
-  margin-top: 3rem;
+  flex-direction: row;
+  position: relative;
 }
 
-.card {
-  margin: 1rem;
-  flex-basis: 45%;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+.floatCardAnchor {
+  position: absolute;
+  top: -133px;
+  visibility: hidden;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+.floatCardImg {
+  flex-basis: 505px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-right: 30px;
 }
 
-.card h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
+.floatCardText {
   margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
 }
 
-.logo {
-  height: 1em;
+.splitSlider {
+  width: 100%;
+  height: auto;
+  position: relative;
+  user-select: none;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
+.splitSliderOuter {
+  width: 100%;
+  height: auto;
+}
+
+.splitSliderImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.splitSliderInner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.splitSliderImgFg {
+  object-fit: cover;
+  object-position: left top;
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.splitSliderHandle {
+  cursor: col-resize;
+  height: 100%;
+  width: 10px;
+  border-style: solid;
+  border-color: grey;
+  border-width: 0 2px;
+  background-color: darkgrey;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.gallery {
+  position: relative;
+}
+
+.galleryImage {
+  width: 100%;
+  display: block;
+}
+
+.galleryDotNav {
+  display: flex;
+  justify-content: center;
+  margin-top: 11px;
+}
+
+.galleryDot {
+  flex: 8px 0 0;
+  border: 1px solid black;
+  background-color: transparent;
+  border-radius: 4px;
+  height: 8px;
+  padding: 0;
+  margin: 3px;
+}
+
+.galleryDotActive {
+  background-color: black;
+}
+
+.galleryPrev {
+  position: absolute;
+  top: calc(50% - 12px - 25px);
+  left: 10px;
+  height: 50px;
+  width: 30px;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: #F7F5F0;
+  visibility: hidden;
+}
+
+.galleryNext {
+  position: absolute;
+  top: calc(50% - 12px - 25px);
+  right: 10px;
+  height: 50px;
+  width: 30px;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: #F7F5F0;
+  visibility: hidden;
+}
+
+.gallery:hover .galleryPrev, .gallery:hover .galleryNext {
+  visibility: visible;
+}
+
+.galleryCard {
+  margin-top: 100px;
+  position: relative;
+}
+
+.galleryCardAnchor {
+  position: absolute;
+  top: -133px;
+  visibility: hidden;
+}
+
+.galleryCardCaption {
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.referenzenIntro {
+  margin: 20px 0 40px;
+}
+
+.portraitWerdegang {
+  margin-top: 100px;
+}
+
+.portraitWerdegang ul {
+  padding-left: 1em;
+}
+
+.portraitWerdegang li {
+  padding-left: 0.4em;
+}
+
+.portraitWerdegang ::marker {
+  content: '—';
 }

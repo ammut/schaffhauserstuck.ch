@@ -4,6 +4,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Arial, sans-serif;
+  font-weight: 300;
 }
 
 a {
@@ -11,6 +13,24 @@ a {
   text-decoration: none;
 }
 
+img {
+  width: 100%;
+}
+
+h3 {
+  margin: 0;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
 * {
   box-sizing: border-box;
+  font-size: 17px;
+  line-height: 25px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
