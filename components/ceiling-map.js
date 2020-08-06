@@ -8,13 +8,14 @@ import styles from '../styles/Home.module.css'
 import {addProjection} from 'ol/proj'
 import {defaults} from 'ol/interaction'
 
-export default function CeilingMap() {
+export default function CeilingMap({enableZoom = false}) {
     const target = useRef()
     useEffect(() => {
         const width = 21267
         const height = 15500
         const extent = [0, 0, width, height]
-        const initExtent = [12739, 2360, 16260, 5610]
+        // const initExtent = [12739, 2360, 16260, 5610]
+        const initExtent = [14285, 3272, 15271, 4741]
 
         const projection = 'stuckdecke'
 
@@ -35,7 +36,7 @@ export default function CeilingMap() {
                     source: new XYZ({
                         projection: projection,
                         url: '/maps/{z}/{x}/{y}.png',
-                        maxResolution: 128,
+                        maxResolution: 128, // resolution at zoom:0
                     }),
                 })
             ],
@@ -43,14 +44,13 @@ export default function CeilingMap() {
                 enableRotation: false,
                 projection: projection,
                 extent: extent,
-                minResolution: 1,
-                maxResolution: 16,
-                resolution: 8, // zoom 4
+                minResolution: 1, // zoom:7
+                maxResolution: 16, // zoom:3
             }),
-            controls: [],
+            controls: [], // hide default controls
             interactions: defaults({
-                mouseWheelZoom: false,
-                pinchZoom: false,
+                mouseWheelZoom: enableZoom,
+                pinchZoom: enableZoom,
             })
         })
 

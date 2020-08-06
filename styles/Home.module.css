@@ -335,6 +335,10 @@
   margin: 20px 0 40px;
 }
 
+.portraitKontakt {
+  display: none;
+}
+
 .portraitWerdegang {
   margin-top: 100px;
 }
@@ -360,6 +364,7 @@
   width: 100%;
   height: 100%;
   background-color: #cccccc;
+  cursor: move;
 }
 
 @media only screen and (max-width: 767px){
@@ -375,6 +380,7 @@
   .header2Left {
     font-size: 15px;
     line-height: 22px;
+    margin-left: 0;
   }
 
   .header2Right {
@@ -436,5 +442,27 @@
   .floatCardImg {
     margin: 0 -25px 30px;
     width: calc(100% + 50px);
+  }
+
+  .gallery {
+    margin: 0 -25px;
+    width: calc(100% + 50px);
+  }
+
+  .galleryDotNav {
+    margin: 7px 0 9px;
+  }
+
+  .galleryCard {
+    margin-top: 60px;
+  }
+
+  .portraitKontakt {
+    display: block;
+    margin-top: 60px;
+  }
+
+  .portraitWerdegang {
+    margin-top: 60px;
   }
 }

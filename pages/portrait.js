@@ -14,6 +14,14 @@ export default function Portrait() {
                     <div className={styles.intro}>
                         {portrait.intro}
                     </div>
+                    <div className={styles.portraitKontakt} >
+                        <h3>Kontakt</h3>
+                        <a className={styles.link} href="mailto:a.vogelsanger@complus.ch">a.vogelsanger@complus.ch</a><br />
+                        <a className={styles.link} href="tel:+41765053030">+41 76 505 30 30</a><br />
+                        Andreas Vogelsanger <br />
+                        Rosengasse 16 <br />
+                        8200 Schaffhausen
+                    </div>
                     <div className={styles.portraitWerdegang}>
                         <h3>{portrait.cv.title}</h3>
                         <ul>
@@ -25,7 +33,7 @@ export default function Portrait() {
                 </div>
 
                 <SideBar>
-                    <div className={styles.contactInfo} >
+                    <div>
                         <h3>Kontakt</h3>
                         <a className={styles.link} href="mailto:a.vogelsanger@complus.ch">a.vogelsanger@complus.ch</a><br />
                         <a className={styles.link} href="tel:+41765053030">+41 76 505 30 30</a><br />
