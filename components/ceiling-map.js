@@ -1,68 +1,70 @@
-import { Component } from 'react';
-import { Map, View } from 'ol';
-import Projection from 'ol/proj/Projection';
-import {Image, Tile} from 'ol/layer'
-import { ImageStatic } from 'ol/source';
-import TileGrid from 'ol/tilegrid/TileGrid'
+import {useEffect, useRef} from 'react'
+import Map from 'ol/Map'
+import View from 'ol/View'
+import Projection from 'ol/proj/Projection'
+import TileLayer from 'ol/layer/Tile'
+import XYZ from 'ol/source/XYZ'
+import styles from '../styles/Home.module.css'
+import {addProjection} from 'ol/proj'
+import {defaults} from 'ol/interaction'
 
-export default class CeilingMap extends Component{
+export default function CeilingMap() {
+    const target = useRef()
+    useEffect(() => {
+        const width = 21267
+        const height = 15500
+        const extent = [0, 0, width, height]
+        const initExtent = [12739, 2360, 16260, 5610]
 
-    constructor(props) {
-        super(props)
-    }
+        const projection = 'stuckdecke'
 
-    componentDidMount(){
-        const imageExtent = [0, 0, 1200, 1200];
-        const projection = new Projection({
-            code: 'sample',
+        addProjection(new Projection({
+            code: projection,
             units: 'pixels',
-            extent: imageExtent
-        });
+            extent: extent,
+        }))
 
-        // Create an Openlayer Map instance with two tile layers
-        const map = new Map({
-            //  Display the map in the div with the id of map
-            target: 'map',
+        let view
+        let map = new Map({
+            target: target.current,
             layers: [
-                // new Image({
-                //     source: new ImageStatic({
-                //         url: '/maps/samplemap.jpg',
-                //         projection,
-                //         imageExtent
-                //     })
-                // }),
-                new Tile({
-                    projection: 'PIXELS',
-                    tileGrid: new TileGrid({
-                        extent: imageExtent,
-                        minZoom: 0,
-                        maxZoom: 4,
-                        resolutions: [0, 1, 2, 3, 4].map(z => Math.pow(2, 4 - z))
+                new TileLayer({
+                    extent: extent,
+                    preload: Infinity,
+
+                    source: new XYZ({
+                        projection: projection,
+                        url: '/maps/{z}/{x}/{y}.png',
+                        maxResolution: 128,
                     }),
-                    tilePixelRatio: 1.,
-                    url: 'maps/tiles/{z}/{x}/{-y}.png',
-                }),
+                })
             ],
-            // Render the tile layers in a map view with a Mercator projection
-            view: new View({
-                projection,
-                center: [600, 600],
-                zoom: 3,
-                maxZoom: 8
+            view: view = new View({
+                enableRotation: false,
+                projection: projection,
+                extent: extent,
+                minResolution: 1,
+                maxResolution: 16,
+                resolution: 8, // zoom 4
+            }),
+            controls: [],
+            interactions: defaults({
+                mouseWheelZoom: false,
+                pinchZoom: false,
             })
         })
-    }
 
-    render(){
-        const style = {
-            width: '100%',
-            height: '100%',
-            backgroundColor: '#cccccc',
+        view.fit(initExtent)
+
+        return () => {
+            map.setTarget(null)
+            map = null
         }
-        return (
-            <div id="map" style={style}/>
-        )
-    }
+    })
+
+    return (
+        <div ref={target} className={styles.map} />
+    )
 }
 
 

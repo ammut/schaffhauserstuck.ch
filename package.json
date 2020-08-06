@@ -4,15 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export -o schaffhauserstuck.ch && echo 'creating archive...' && tar czf schaffhauserstuck.ch.tar.gz schaffhauserstuck.ch && rm -rf schaffhauserstuck.ch",
     "start": "next start"
   },
   "dependencies": {
     "next": "9.5.0",
-    "ol": "^6.4.2",
+    "ol": "6.4.2",
     "react": "16.13.1",
-    "react-alice-carousel": "^1.19.3",
-    "react-dom": "16.13.1",
-    "react-openlayers": "^0.3.0"
+    "react-alice-carousel": "1.19.3",
+    "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "next-transpile-modules": "^4.0.2"
   }
 }

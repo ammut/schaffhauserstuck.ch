@@ -5,16 +5,21 @@ import {PageLink} from './page-link'
 import {useToggle} from '../lib/hooks'
 import Link from 'next/link'
 
-export default function Layout({leftHeading, rightHeading, children}) {
+export default function Layout({leftHeading, rightHeading, children, mainClassName}) {
     const [siteNavVisible, toggleSiteNav] = useToggle(false)
 
     const siteNavClass = `${styles.offCanvas} ${siteNavVisible ? styles.offCanvasOpen : styles.offCanvasClosed}`
+    const mainClass = [styles.main, mainClassName].filter(_ => _).join(' ')
 
     return (
         <div className={styles.container}>
             <header className={styles.header}>
-                <h1 className={styles.header1}><Link href='/'><a>Andreas Vogelsanger</a></Link></h1>
-                {leftHeading && <h2 className={styles.header2Left}>{leftHeading}</h2>}
+                <Link href='/'>
+                    <a>
+                        <h1 className={styles.header1}>Andreas Vogelsanger</h1>
+                        {leftHeading && <h2 className={styles.header2Left}>{leftHeading}</h2>}
+                    </a>
+                </Link>
                 <div className={styles.center}>
                     {rightHeading && <h2 className={styles.header2Right}>{rightHeading}</h2>}
                 </div>
@@ -22,7 +27,7 @@ export default function Layout({leftHeading, rightHeading, children}) {
 
             <BurgerButton onClick={toggleSiteNav} active={siteNavVisible}/>
 
-            <main className={styles.main}>
+            <main className={mainClass}>
                 {children}
             </main>
 

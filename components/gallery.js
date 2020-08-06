@@ -1,6 +1,6 @@
 import AliceCarousel from 'react-alice-carousel'
 import style from '../styles/Home.module.css'
-import {useRef, useState} from 'react'
+import {useState} from 'react'
 
 function preventDefault(e) {
     e.preventDefault()
@@ -10,12 +10,17 @@ function urlToImg(url) {
     return <img className={style.galleryImage} src={url} alt="" onMouseDown={preventDefault}/>
 }
 
-export default function Gallery({images}) {
-    let [items, initItems] = useState(null)
-    const [active, setActive] = useState(0)
+function inc(value) {
+    return value + 1
+}
 
-    if (!items)
-        initItems(images.map(urlToImg))
+function dec(value) {
+    return value - 1
+}
+
+export default function Gallery({images}) {
+    let [items] = useState(() => images.map(urlToImg))
+    const [active, setActive] = useState(0)
 
     const className = images.map((_, i) =>
         i === active ? `${style.galleryDotActive} ${style.galleryDot}` : style.galleryDot
@@ -45,8 +50,8 @@ export default function Gallery({images}) {
                     <button key={index} className={className[index]} onClick={() => setActive(index)} />
                 )}
             </nav>
-            <button className={style.galleryPrev} onClick={() => setActive(active - 1)} />
-            <button className={style.galleryNext} onClick={() => setActive(active + 1)} />
+            <button className={style.galleryPrev} onClick={() => setActive(dec)} />
+            <button className={style.galleryNext} onClick={() => setActive(inc)} />
         </div>
     )
 }

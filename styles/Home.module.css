@@ -9,10 +9,9 @@
 }
 
 .header {
-  height: 73px;
   background-color: #eae7de;
   width: 100%;
-  display: flex;
+  padding: 25px 30px;
   flex-direction: row;
   align-items: center;
   position: fixed;
@@ -23,21 +22,18 @@
 .header1 {
   font-size: 18px;
   font-weight: normal;
-
   margin: 0;
-  position: absolute;
-  top: 24px;
-  left: 30px;
+
+  display: inline-block;
 }
 
 .header2Left {
   font-size: 18px;
   font-weight: normal;
-
   margin: 0;
-  position: absolute;
-  top: 24px;
-  left: 227px;
+
+  display: inline-block;
+  margin-left: 100px;
 }
 
 .header2Right {
@@ -73,6 +69,7 @@
 }
 
 .menuButton {
+  cursor: pointer;
   width: 20px;
   height: 15px;
   padding: 8px;
@@ -352,4 +349,92 @@
 
 .portraitWerdegang ::marker {
   content: '—';
+}
+
+.front {
+  height: 100vh;
+  padding-bottom: 0;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  background-color: #cccccc;
+}
+
+@media only screen and (max-width: 767px){
+  .header {
+    padding: 21px 25px 18px;
+  }
+
+  .header1 {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .header2Left {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .header2Right {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .offCanvas {
+    width: 100vw;
+  }
+
+  .siteNavPages {
+    top: 126px;
+  }
+
+  .siteNavPageLink {
+    font-size: 15px;
+    line-height: 29px;
+  }
+
+  .contactLinks .link {
+    font-size: 15px;
+    line-height: 29px;
+  }
+
+  .outerGutter {
+    width: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .innerGutter {
+    padding: 0 25px;
+    width: 100%;
+  }
+
+  .main {
+    padding-top: 61px;
+  }
+
+  .sidebarOuter {
+    display: none;
+  }
+
+  .intro {
+    padding-top: 23px;
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .floatCard {
+    display: block;
+  }
+
+  .floatCardAnchor {
+    top: -61px;
+  }
+
+  .floatCardImg {
+    margin: 0 -25px 30px;
+    width: calc(100% + 50px);
+  }
 }
