@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export -o schaffhauserstuck.ch && echo 'creating archive...' && tar czf schaffhauserstuck.ch.tar.gz schaffhauserstuck.ch && rm -rf schaffhauserstuck.ch",
+    "build": "next build && next export -o schaffhauserstuck.ch && echo 'creating archive...' && tar czf schaffhauserstuck.ch.tar.gz schaffhauserstuck.ch",
     "start": "next start"
   },
   "dependencies": {

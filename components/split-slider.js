@@ -9,12 +9,14 @@ function preventDefault(event) {
     event.preventDefault()
 }
 
+// todo: make functional
 export default class SplitSlider extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            sliderPos: 0.25
+            sliderPos: 0.25,
+            active: false,
         }
 
         this.slider = createRef()
@@ -23,6 +25,8 @@ export default class SplitSlider extends Component {
 
         this.onMouseDown = this.onMouseDown.bind(this)
         this.onMouseMove = this.onMouseMove.bind(this)
+        this.onTouchStart = this.onTouchStart.bind(this)
+        this.onTouchMove = this.onTouchMove.bind(this)
     }
 
     onMouseMove(event) {
@@ -32,15 +36,35 @@ export default class SplitSlider extends Component {
     }
 
     onMouseDown() {
-        // this.setState({active: true})
+        this.setState({active: true})
         const {left, right} = this.slider.current.getBoundingClientRect()
         this.start = left
         this.width = right - left
 
         document.addEventListener('mousemove', this.onMouseMove)
-        document.addEventListener('mouseup', () =>
+        document.addEventListener('mouseup', () => {
+            this.setState({active: false})
             document.removeEventListener('mousemove', this.onMouseMove)
-        )
+        })
+    }
+
+    onTouchStart() {
+        this.setState({active: true})
+        const {left, right} = this.slider.current.getBoundingClientRect()
+        this.start = left
+        this.width = right - left
+
+        document.addEventListener('touchmove', this.onTouchMove)
+        document.addEventListener('touchend', () => {
+            this.setState({active: false})
+            document.removeEventListener('touchmove', this.onTouchMove)
+        })
+    }
+
+    onTouchMove(event) {
+        const offset = event.touches[0].clientX - this.start
+        const ratio = clamp(offset / this.width)
+        this.setState({sliderPos: ratio})
     }
 
     render() {
@@ -51,7 +75,7 @@ export default class SplitSlider extends Component {
         const {right, left} = this.props
 
         return (
-            <div className={styles.splitSlider}>
+            <div className={`${styles.splitSlider} ${this.state.active ? styles.splitSliderActive: ''}`}>
                 <div className={styles.splitSliderOuter} ref={this.slider}>
                     <img onMouseDown={preventDefault} className={styles.splitSliderImg} src={right} alt='' />
                     <div className={styles.splitSliderInner} style={{width:`${sliderPos * 100}%`}}>
@@ -61,9 +85,13 @@ export default class SplitSlider extends Component {
                 </div>
                 <div
                     className={styles.splitSliderHandle}
-                    style={{left:`calc(${sliderPos * 100}% - 7px)`}}
+                    style={{left: sliderPos * 100 + '%'}}
                     onMouseDown={this.onMouseDown}
-                />
+                    onTouchStart={this.onTouchStart}>
+                    <div className={styles.splitSliderHandleBar}>
+                        <div className={styles.splitSliderHandleRidge} />
+                    </div>
+                </div>
             </div>
         )
     }

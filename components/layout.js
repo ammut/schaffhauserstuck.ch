@@ -5,11 +5,14 @@ import {PageLink} from './page-link'
 import {useToggle} from '../lib/hooks'
 import Link from 'next/link'
 
-export default function Layout({leftHeading, rightHeading, children, mainClassName}) {
+export default function Layout({leftHeading, rightHeading, children, mainClassName, rightHeadingSmallscreen}) {
     const [siteNavVisible, toggleSiteNav] = useToggle(false)
 
     const siteNavClass = `${styles.offCanvas} ${siteNavVisible ? styles.offCanvasOpen : styles.offCanvasClosed}`
     const mainClass = [styles.main, mainClassName].filter(_ => _).join(' ')
+
+    if (rightHeading && !rightHeadingSmallscreen)
+        rightHeadingSmallscreen = rightHeading
 
     return (
         <div className={styles.container}>
@@ -22,6 +25,7 @@ export default function Layout({leftHeading, rightHeading, children, mainClassNa
                 </Link>
                 <div className={styles.center}>
                     {rightHeading && <h2 className={styles.header2Right}>{rightHeading}</h2>}
+                    {rightHeadingSmallscreen && <h2 className={styles.header2RightSm}>{rightHeadingSmallscreen}</h2> }
                 </div>
             </header>
 
@@ -33,7 +37,7 @@ export default function Layout({leftHeading, rightHeading, children, mainClassNa
 
             <nav className={siteNavClass}>
                 <ul className={styles.siteNavPages}>
-                    {pages.map(page => <li key={page.key}><PageLink page={page}/></li>)}
+                    {pages.map(page => <li key={page.key}><PageLink onClick={toggleSiteNav} page={page}/></li>)}
                 </ul>
 
                 <div className={styles.contactLinks}>

@@ -6,7 +6,7 @@ import GalleryCard from '../components/gallery-card'
 
 export default function SchaffhauserStuck() {
     return (
-        <Layout rightHeading='Schaffhauser Stuck'>
+        <Layout rightHeading='Schaffhauser Stuck' rightHeadingSmallscreen='SH Stuck'>
             <div className={styles.outerGutter}>
                 <div className={styles.innerGutter}>
                     <p className={styles.intro}>

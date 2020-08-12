@@ -1,5 +1,5 @@
 .container {
-  min-height: 100vh;
+  height: 100%;
 }
 
 .center {
@@ -12,8 +12,6 @@
   background-color: #eae7de;
   width: 100%;
   padding: 25px 30px;
-  flex-direction: row;
-  align-items: center;
   position: fixed;
   z-index: 10;
   top: 0;
@@ -47,6 +45,10 @@
   left: 361px;
 }
 
+.header2RightSm {
+  display: none;
+}
+
 .offCanvas {
   position: fixed;
   top: 0;
@@ -54,10 +56,6 @@
   width: 342px;
   background-color: #b6c3c3;
   z-index: 20;
-
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  /*justify-content: space-between;*/
 }
 
 .offCanvasOpen {
@@ -216,6 +214,10 @@
   user-select: none;
 }
 
+.splitSliderActive {
+  cursor: col-resize;
+}
+
 .splitSliderOuter {
   width: 100%;
   height: auto;
@@ -246,14 +248,36 @@
 .splitSliderHandle {
   cursor: col-resize;
   height: 100%;
-  width: 10px;
-  border-style: solid;
-  border-color: grey;
-  border-width: 0 2px;
-  background-color: darkgrey;
+  width: 0;
   position: absolute;
   top: 0;
   bottom: 0;
+  touch-action: none;
+
+  opacity: 0;
+  transition: opacity 250ms ease-out 0s;
+}
+
+.splitSlider:hover .splitSliderHandle:not(:active) {
+  opacity: 1;
+}
+
+.splitSliderHandleBar {
+  width: 8px;
+  height: 100%;
+  position: relative;
+  left: -4px;
+  background-color: #F7F5F0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splitSliderHandleRidge {
+  width: 2px;
+  height: 50px;
+  background-color: #86837a;
 }
 
 .gallery {
@@ -263,6 +287,7 @@
 .galleryImage {
   width: 100%;
   display: block;
+  touch-action: none;
 }
 
 .galleryDotNav {
@@ -356,7 +381,7 @@
 }
 
 .front {
-  height: 100vh;
+  height: 100%;
   padding-bottom: 0;
 }
 
@@ -369,7 +394,14 @@
 
 @media only screen and (max-width: 767px){
   .header {
-    padding: 21px 25px 18px;
+    padding: 21px 65px 18px 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .header .center {
+    position: static;
   }
 
   .header1 {
@@ -381,11 +413,22 @@
     font-size: 15px;
     line-height: 22px;
     margin-left: 0;
+    display: block;
   }
 
   .header2Right {
+    display: none;
+  }
+
+  .header2RightSm {
+    display: block;
+    margin: 0;
     font-size: 15px;
     line-height: 22px;
+    font-weight: normal;
+    width: auto;
+    position: static;
+    text-transform: uppercase;
   }
 
   .offCanvas {
@@ -394,11 +437,17 @@
 
   .siteNavPages {
     top: 126px;
+    right: 24px;
   }
 
   .siteNavPageLink {
     font-size: 15px;
     line-height: 29px;
+  }
+
+  .contactLinks {
+    bottom: 24px;
+    right: 24px;
   }
 
   .contactLinks .link {
@@ -415,6 +464,11 @@
   .innerGutter {
     padding: 0 25px;
     width: 100%;
+  }
+
+  .menuButton {
+    top: 15px;
+    right: 16px;
   }
 
   .main {
@@ -464,5 +518,15 @@
 
   .portraitWerdegang {
     margin-top: 60px;
+  }
+
+  .splitSlider {
+    width: calc(100% + 50px);
+    margin-left: -25px;
+  }
+
+  .splitSliderHandleBar {
+    width: 24px;
+    left: -12px
   }
 }

@@ -1,5 +1,6 @@
 import styles from '../styles/Home.module.css'
 
+// todo: make lazy loading
 export function FloatCard({item}) {
     return (
         <div className={styles.floatCard}>

@@ -18,6 +18,7 @@ function dec(value) {
     return value - 1
 }
 
+// todo: make lazy loading
 export default function Gallery({images}) {
     let [items] = useState(() => images.map(urlToImg))
     const [active, setActive] = useState(0)
