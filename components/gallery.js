@@ -1,58 +1,82 @@
-import AliceCarousel from 'react-alice-carousel'
+import ImageGallery from 'react-image-gallery'
 import style from '../styles/Home.module.css'
-import {useState} from 'react'
+import {useRef, useState} from 'react'
+import {preventDefault} from '../lib/util'
 
-function preventDefault(e) {
-    e.preventDefault()
+function makeLazyProps([original, lqip], index) {
+    return {
+        original,
+        lqip,
+        index,
+    }
 }
 
-function urlToImg(url) {
-    return <img className={style.galleryImage} src={url} alt="" onMouseDown={preventDefault}/>
-}
-
-function inc(value) {
-    return value + 1
-}
-
-function dec(value) {
-    return value - 1
-}
-
-// todo: make lazy loading
+// todo: support for .webp
 export default function Gallery({images}) {
-    let [items] = useState(() => images.map(urlToImg))
-    const [active, setActive] = useState(0)
+    let [items] = useState(() => images.map(makeLazyProps))
+    let [loaded, setLoaded] = useState(images.map((_, index) => index === 0))
+    let [current, setCurrent] = useState(0)
+    const gallery = useRef(null)
+
+    function renderItem(item) {
+        return (
+            <img
+                src={loaded[item.index] ? item.original : undefined}
+                alt=""
+                className={style.galleryImage}
+                onMouseDown={preventDefault}
+                style={{backgroundImage: `url(${item.lqip})`}}
+                width='1500'
+                height='897'
+            />
+        )
+    }
+
+    function onBeforeSlide(nextIndex) {
+        setCurrent(nextIndex)
+        if (!loaded[nextIndex]) {
+            const newLoaded = loaded.map((value, index) => index === nextIndex ? true : value)
+            setLoaded(newLoaded)
+        }
+    }
+
+    function slideTo(index) {
+        gallery.current.slideToIndex(index)
+    }
 
     const className = images.map((_, i) =>
-        i === active ? `${style.galleryDotActive} ${style.galleryDot}` : style.galleryDot
+        i === current ? `${style.galleryDotActive} ${style.galleryDot}` : style.galleryDot
     )
-
-    /*
-     * For sliding past-the-end, Alice works best when passing a past-the-end index and then canonicalizing
-     * our internal state via onSlideChanged.
-     */
-    function onSlideChanged({item}) {
-        setActive(item)
-    }
 
     return (
         <div className={style.gallery}>
-            <AliceCarousel
-                items={items}
-                slideToIndex={active}
-                onSlideChanged={onSlideChanged}
-                keysControlDisabled
-                buttonsDisabled
-                dotsDisabled
-            />
+            <div className={style.galleryWrapper}>
+                <ImageGallery
+                    items={items}
+                    renderItem={renderItem}
+                    showNav={false}
+                    showBullets={false}
+                    showThumbnails={false}
+                    showFullscreenButton={false}
+                    showPlayButton={false}
+                    disableKeyDown
+                    preventDefaultTouchmoveEvent
+                    onBeforeSlide={onBeforeSlide}
+                    ref={gallery}
+                />
+                <div className={style.galleryPrev}>
+                    <button className={style.galleryPrevButton} onClick={() => slideTo(current - 1)} />
+                </div>
+                <div className={style.galleryNext}>
+                    <button className={style.galleryNextButton} onClick={() => slideTo(current + 1)} />
+                </div>
+            </div>
 
             <nav className={style.galleryDotNav}>
                 {images.map((_, index) =>
-                    <button key={index} className={className[index]} onClick={() => setActive(index)} />
+                    <button key={index} className={className[index]} onClick={() => slideTo(index)} />
                 )}
             </nav>
-            <button className={style.galleryPrev} onClick={() => setActive(dec)} />
-            <button className={style.galleryNext} onClick={() => setActive(inc)} />
         </div>
     )
 }

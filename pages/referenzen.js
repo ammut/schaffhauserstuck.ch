@@ -1,5 +1,5 @@
 import Layout, {PageNav, SideBar} from '../components/layout'
-import styles from '../styles/Home.module.css'
+import style from '../styles/Home.module.css'
 import {referenzen} from '../lib/data'
 import SplitSlider from '../components/split-slider'
 import GalleryCard from '../components/gallery-card'
@@ -7,16 +7,16 @@ import GalleryCard from '../components/gallery-card'
 export default function Beratung() {
     return (
         <Layout rightHeading='Referenzen'>
-            <div className={styles.outerGutter}>
-                <div className={styles.innerGutter}>
-                    <div className={styles.intro}>
+            <div className={style.outerGutter}>
+                <div className={style.innerGutter}>
+                    <div className={style.intro}>
                         <SplitSlider className={'foo'} left={referenzen.slider.left} right={referenzen.slider.right}/>
 
-                        <p className={styles.referenzenIntro}>
+                        <p className={style.referenzenIntro}>
                             {referenzen.slider.caption}
                         </p>
                     </div>
-                    <p className={styles.intro}>
+                    <p className={style.intro}>
                         {referenzen.intro}
                     </p>
                     <ul>

@@ -1,14 +1,14 @@
 import Layout, {PageNav, SideBar} from '../components/layout'
-import styles from '../styles/Home.module.css'
-import {beratung, referenzen} from '../lib/data'
+import style from '../styles/Home.module.css'
+import {beratung} from '../lib/data'
 import {FloatCard} from '../components/float-card'
 
 export default function Beratung() {
     return (
         <Layout rightHeading='Beratung'>
-            <div className={styles.outerGutter}>
-                <div className={styles.innerGutter}>
-                    <p className={styles.intro}>
+            <div className={style.outerGutter}>
+                <div className={style.innerGutter}>
+                    <p className={style.intro}>
                         {beratung.intro}
                     </p>
                     <ul>

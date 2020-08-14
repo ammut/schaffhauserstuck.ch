@@ -1,5 +1,5 @@
-import styles from '../styles/Home.module.css'
-import {useEffect, useRef, useState, Component, createRef} from 'react'
+import style from '../styles/Home.module.css'
+import {Component, createRef} from 'react'
 
 function clamp(value) {
     return value < 0 ? 0 : value > 1 ? 1 : value;
@@ -68,28 +68,25 @@ export default class SplitSlider extends Component {
     }
 
     render() {
-        // const [sliderPos, setSliderPos] = useState(0.25)
-        // const [active, setActive] = useState(false)
-        // const slideDiv = useRef(null)
         const {sliderPos} = this.state
         const {right, left} = this.props
 
         return (
-            <div className={`${styles.splitSlider} ${this.state.active ? styles.splitSliderActive: ''}`}>
-                <div className={styles.splitSliderOuter} ref={this.slider}>
-                    <img onMouseDown={preventDefault} className={styles.splitSliderImg} src={right} alt='' />
-                    <div className={styles.splitSliderInner} style={{width:`${sliderPos * 100}%`}}>
-                        <img onMouseDown={preventDefault} className={`${styles.splitSliderImgFg}`} src={left} alt='' />
+            <div className={`${style.splitSlider} ${this.state.active ? style.splitSliderActive: ''}`}>
+                <div className={style.splitSliderOuter} ref={this.slider}>
+                    <img onMouseDown={preventDefault} className={style.splitSliderImg} src={right} alt='' />
+                    <div className={style.splitSliderInner} style={{width:`${sliderPos * 100}%`}}>
+                        <img onMouseDown={preventDefault} className={`${style.splitSliderImgFg}`} src={left} alt='' />
                     </div>
 
                 </div>
                 <div
-                    className={styles.splitSliderHandle}
+                    className={style.splitSliderHandle}
                     style={{left: sliderPos * 100 + '%'}}
                     onMouseDown={this.onMouseDown}
                     onTouchStart={this.onTouchStart}>
-                    <div className={styles.splitSliderHandleBar}>
-                        <div className={styles.splitSliderHandleRidge} />
+                    <div className={style.splitSliderHandleBar}>
+                        <div className={style.splitSliderHandleRidge} />
                     </div>
                 </div>
             </div>

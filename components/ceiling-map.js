@@ -4,7 +4,7 @@ import View from 'ol/View'
 import Projection from 'ol/proj/Projection'
 import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
-import styles from '../styles/Home.module.css'
+import style from '../styles/Home.module.css'
 import {addProjection} from 'ol/proj'
 import {defaults} from 'ol/interaction'
 
@@ -36,7 +36,7 @@ export default function CeilingMap({enableZoom = false}) {
 
                     source: new XYZ({
                         projection: projection,
-                        url: '/maps/{z}/{x}/{y}.png',
+                        url: '/Front/{z}/{x}/{y}.png',
                         maxResolution: 128, // resolution at zoom:0
                     }),
                 })
@@ -66,7 +66,7 @@ export default function CeilingMap({enableZoom = false}) {
     })
 
     return (
-        <div ref={target} className={styles.map} />
+        <div ref={target} className={style.map} />
     )
 }
 

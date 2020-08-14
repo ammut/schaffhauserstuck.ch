@@ -1,12 +1,12 @@
-import styles from "../styles/Home.module.css";
+import style from "../styles/Home.module.css";
 
 export default function BurgerButton({onClick, active}) {
     return (
-        <button className={`${styles.menuButton} ${active ? styles.menuButtonActive : ''}`} onClick={onClick}>
-            <span className={`${styles.menuButtonBar} ${styles.menuButtonBar1}`}/>
-            <span className={`${styles.menuButtonBar} ${styles.menuButtonBar2}`}/>
-            <span className={`${styles.menuButtonBar} ${styles.menuButtonBar3}`}/>
-            <span className={`${styles.menuButtonBar} ${styles.menuButtonBar4}`}/>
+        <button className={`${style.menuButton} ${active ? style.menuButtonActive : ''}`} onClick={onClick}>
+            <span className={`${style.menuButtonBar} ${style.menuButtonBar1}`}/>
+            <span className={`${style.menuButtonBar} ${style.menuButtonBar2}`}/>
+            <span className={`${style.menuButtonBar} ${style.menuButtonBar3}`}/>
+            <span className={`${style.menuButtonBar} ${style.menuButtonBar4}`}/>
         </button>
     );
 }

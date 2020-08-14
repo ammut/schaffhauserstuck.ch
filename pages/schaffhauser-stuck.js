@@ -1,5 +1,5 @@
 import Layout, {PageNav, SideBar} from '../components/layout'
-import styles from '../styles/Home.module.css'
+import style from '../styles/Home.module.css'
 import {schaffhauserStuck} from '../lib/data'
 import GalleryCard from '../components/gallery-card'
 
@@ -7,9 +7,9 @@ import GalleryCard from '../components/gallery-card'
 export default function SchaffhauserStuck() {
     return (
         <Layout rightHeading='Schaffhauser Stuck' rightHeadingSmallscreen='SH Stuck'>
-            <div className={styles.outerGutter}>
-                <div className={styles.innerGutter}>
-                    <p className={styles.intro}>
+            <div className={style.outerGutter}>
+                <div className={style.innerGutter}>
+                    <p className={style.intro}>
                         {schaffhauserStuck.intro}
                     </p>
                     <ul>

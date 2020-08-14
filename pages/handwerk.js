@@ -1,15 +1,15 @@
 import Layout, {PageNav, SideBar} from '../components/layout'
-import styles from '../styles/Home.module.css'
-import {handwerk, referenzen} from '../lib/data'
+import style from '../styles/Home.module.css'
+import {handwerk} from '../lib/data'
 import {FloatCard} from '../components/float-card'
 
 
 export default function Handwerk({}) {
     return (
         <Layout rightHeading='Handwerk'>
-            <div className={styles.outerGutter}>
-                <div className={styles.innerGutter}>
-                    <p className={styles.intro}>
+            <div className={style.outerGutter}>
+                <div className={style.innerGutter}>
+                    <p className={style.intro}>
                         {handwerk.intro}
                     </p>
                     <ul>
