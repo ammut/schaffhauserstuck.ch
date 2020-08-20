@@ -48,20 +48,22 @@ export default class SplitSlider extends Component {
         })
     }
 
-    onTouchStart() {
+    onTouchStart(event) {
+        // event.preventDefault()
         this.setState({active: true})
         const {left, right} = this.slider.current.getBoundingClientRect()
         this.start = left
         this.width = right - left
 
-        document.addEventListener('touchmove', this.onTouchMove)
-        document.addEventListener('touchend', () => {
+        this.slider.current.addEventListener('touchmove', this.onTouchMove, {passive: false, capture: false})
+        this.slider.current.addEventListener('touchend', () => {
             this.setState({active: false})
-            document.removeEventListener('touchmove', this.onTouchMove)
+            this.slider.current.removeEventListener('touchmove', this.onTouchMove)
         })
     }
 
     onTouchMove(event) {
+        event.preventDefault()
         const offset = event.touches[0].clientX - this.start
         const ratio = clamp(offset / this.width)
         this.setState({sliderPos: ratio})
@@ -72,23 +74,23 @@ export default class SplitSlider extends Component {
         const {right, left} = this.props
 
         return (
-            <div className={`${style.splitSlider} ${this.state.active ? style.splitSliderActive: ''}`}>
-                <div className={style.splitSliderOuter} ref={this.slider}>
-                    <img onMouseDown={preventDefault} className={style.splitSliderImg} src={right} alt='' />
+            <div className={`${style.splitSlider} ${this.state.active ? style.splitSliderActive: ''}`} onMouseDown={this.onMouseDown} onTouchStart={this.onTouchStart} ref={this.slider}>
+                <div className={style.splitSliderOuter}>
+                    <img onMouseDown={preventDefault} className={style.splitSliderImg} src={right} alt='' height={897} width={1500} />
                     <div className={style.splitSliderInner} style={{width:`${sliderPos * 100}%`}}>
-                        <img onMouseDown={preventDefault} className={`${style.splitSliderImgFg}`} src={left} alt='' />
+                        <img onMouseDown={preventDefault} className={`${style.splitSliderImgFg}`} src={left} alt='' height={897} width={1500} />
                     </div>
 
                 </div>
-                <div
-                    className={style.splitSliderHandle}
-                    style={{left: sliderPos * 100 + '%'}}
-                    onMouseDown={this.onMouseDown}
-                    onTouchStart={this.onTouchStart}>
-                    <div className={style.splitSliderHandleBar}>
-                        <div className={style.splitSliderHandleRidge} />
-                    </div>
-                </div>
+                {/*<div*/}
+                {/*    className={style.splitSliderHandle}*/}
+                {/*    style={{left: sliderPos * 100 + '%'}}*/}
+                {/*    onMouseDown={this.onMouseDown}*/}
+                {/*    onTouchStart={this.onTouchStart}>*/}
+                {/*    <div className={style.splitSliderHandleBar}>*/}
+                {/*        <div className={style.splitSliderHandleRidge} />*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
         )
     }

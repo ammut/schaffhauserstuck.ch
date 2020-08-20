@@ -3,7 +3,8 @@ import {useEffect, useRef, useState} from 'react'
 import throttle from 'lodash.throttle'
 import {preventDefault} from '../lib/util'
 
-function getOffsets(element, scrollY) {
+function getOffsets(element) {
+    const scrolly = window.scrollY
     const boundingRect = element.getBoundingClientRect();
 
     return {
@@ -18,7 +19,7 @@ export function FloatCard({item}) {
     const img = useRef()
 
     useEffect(() => {
-        const element = getOffsets(img.current, window.scrollY);
+        const element = getOffsets(img.current);
         let removed = false
 
         function _checkScroll() {
@@ -31,8 +32,8 @@ export function FloatCard({item}) {
             const inView = viewport.top <= element.bottom && viewport.bottom >= element.top
 
             if (inView) {
-                unsubscribe()
                 setLoaded(true)
+                unsubscribe()
             }
         }
 
@@ -47,21 +48,23 @@ export function FloatCard({item}) {
             }
         }
 
-        _checkScroll()
+        _checkScroll() // init
         return unsubscribe
     })
 
     return (
         <div className={style.floatCard}>
             <a id={item.title} className={style.floatCardAnchor}/>
-            <img
-                src={loaded ? item.image : undefined}
-                alt={item.imageAlt}
-                className={style.floatCardImg}
-                onMouseDown={preventDefault}
-                style={{backgroundImage: `url(${item.lqip})`}}
-                ref={img}
-            />
+            <div className={style.floatCardImgWrapper}>
+                <img
+                    src={loaded ? item.image : item.lqip}
+                    alt={item.imageAlt}
+                    className={style.floatCardImg}
+                    ref={img}
+                    width={1500}
+                    height={897}
+                />
+            </div>
             <div>
                 <h3>{item.title}</h3>
                 <p className={style.floatCardText}>{item.text}</p>

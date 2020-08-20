@@ -36,7 +36,7 @@ export default function CeilingMap({enableZoom = false}) {
 
                     source: new XYZ({
                         projection: projection,
-                        url: '/Front/{z}/{x}/{y}.png',
+                        url: '/Front/{z}/{x}/{y}.jpg',
                         maxResolution: 128, // resolution at zoom:0
                     }),
                 })

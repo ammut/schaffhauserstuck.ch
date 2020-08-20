@@ -43,10 +43,13 @@
   position: absolute;
   top: 24px;
   left: 361px;
+
+  text-transform: uppercase;
 }
 
 .header2RightSm {
   display: none;
+  text-transform: uppercase;
 }
 
 .offCanvas {
@@ -78,6 +81,7 @@
   top: 19px;
   right: 25px;
   background: transparent;
+  outline: none;
 }
 
 .menuButtonActive {
@@ -188,6 +192,7 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  align-items: stretch;
 }
 
 .floatCardAnchor {
@@ -196,14 +201,19 @@
   visibility: hidden;
 }
 
-.floatCardImg {
-  flex-basis: 505px;
-  flex-grow: 0;
-  flex-shrink: 0;
+.floatCardImgWrapper {
+  flex: 0 0 505px;
   margin-right: 30px;
-  background-size: cover;
   min-height: 302px;
+}
+
+.floatCardImg {
+  display: block;
   color: transparent;
+  background-size: cover;
+  height: 100%;
+  object-fit: cover;
+  object-position: center left;
 }
 
 .floatCardText {
@@ -215,6 +225,7 @@
   height: auto;
   position: relative;
   user-select: none;
+  cursor: col-resize;
 }
 
 .splitSliderActive {
@@ -248,42 +259,6 @@
   display: block;
 }
 
-.splitSliderHandle {
-  cursor: col-resize;
-  height: 100%;
-  width: 0;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  touch-action: none;
-}
-
-
-.splitSliderHandleBar {
-  width: 8px;
-  height: 100%;
-  position: relative;
-  left: -4px;
-  background-color: #F7F5F0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  transition: width 250ms ease-out 0s, left 250ms ease-out 0s;
-}
-
-.splitSlider:not(:hover) .splitSliderHandleBar {
-  width: 0;
-  left: 0;
-}
-
-.splitSliderHandleRidge {
-  width: 2px;
-  height: 50px;
-  background-color: #86837a;
-}
-
 .gallery {
   position: relative;
 }
@@ -296,6 +271,22 @@
   height: 100%;
   display: block;
   background-size: cover;
+}
+
+.gallery :global(.image-gallery) {
+  position: relative;
+  padding: 0;
+  padding-top: 59.8%;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.gallery :global(.image-gallery-content) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .galleryDotNav {
@@ -312,6 +303,7 @@
   height: 8px;
   padding: 0;
   margin: 3px;
+  outline: none;
 }
 
 .galleryDotActive {
@@ -320,64 +312,11 @@
 
 .galleryWrapper {
   position: relative;
+  cursor: url("/Cursor.png") 16 16, e-resize;
 }
 
-.galleryPrev {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 200px;
-  padding: 0;
-  border: 0;
-  visibility: hidden;
-  background: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.galleryPrevButton {
-  background-image: url("/Pfeil_Diashow_Links.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  height: 50px;
-  width: 50px;
-  margin: 0 30px;
-  padding: 0;
-  border: 0;
-}
-
-.galleryNext {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 200px;
-  padding: 0;
-  border: 0;
-  visibility: hidden;
-  background: linear-gradient(270deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.galleryNextButton {
-  background-image: url("/Pfeil_Diashow_Rechts.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  height: 50px;
-  width: 50px;
-  margin: 0 30px;
-  padding: 0;
-  border: 0;
-}
-
-.gallery:hover .galleryPrev, .gallery:hover .galleryNext {
-  visibility: visible;
+.dpr2 .galleryWrapper {
+  /*cursor: url("/Cursor@2x.png") 33 31, e-resize;*/
 }
 
 .galleryCard {
@@ -429,7 +368,7 @@
   width: 100%;
   height: 100%;
   background-color: #cccccc;
-  cursor: move;
+  cursor: url("/Drag_Cursor.png") 11 11, move;
 }
 
 @media only screen and (max-width: 1365px) {
@@ -554,9 +493,16 @@
     top: -61px;
   }
 
+  .floatCardImgWrapper {
+    margin: 0;
+    width: 100%;
+    min-height: 0;
+  }
+
   .floatCardImg {
     margin: 0 -25px 30px;
     width: calc(100% + 50px);
+    height: auto;
   }
 
   .gallery {
@@ -584,10 +530,5 @@
   .splitSlider {
     width: calc(100% + 50px);
     margin-left: -25px;
-  }
-
-  .splitSliderHandleBar {
-    width: 24px;
-    left: -12px
   }
 }

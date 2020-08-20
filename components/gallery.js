@@ -24,10 +24,11 @@ export default function Gallery({images}) {
                 src={loaded[item.index] ? item.original : undefined}
                 alt=""
                 className={style.galleryImage}
-                onMouseDown={preventDefault}
+                // onMouseDown={preventDefault}
                 style={{backgroundImage: `url(${item.lqip})`}}
-                width='1500'
-                height='897'
+                width={1500}
+                height={897}
+                onTouchMove={undefined}
             />
         )
     }
@@ -50,7 +51,7 @@ export default function Gallery({images}) {
 
     return (
         <div className={style.gallery}>
-            <div className={style.galleryWrapper}>
+            <div className={style.galleryWrapper} onClick={() => slideTo(current + 1)}>
                 <ImageGallery
                     items={items}
                     renderItem={renderItem}
@@ -64,12 +65,12 @@ export default function Gallery({images}) {
                     onBeforeSlide={onBeforeSlide}
                     ref={gallery}
                 />
-                <div className={style.galleryPrev}>
-                    <button className={style.galleryPrevButton} onClick={() => slideTo(current - 1)} />
-                </div>
-                <div className={style.galleryNext}>
-                    <button className={style.galleryNextButton} onClick={() => slideTo(current + 1)} />
-                </div>
+                {/*<div className={style.galleryPrev}>*/}
+                {/*    <button className={style.galleryPrevButton} onClick={() => slideTo(current - 1)} />*/}
+                {/*</div>*/}
+                {/*<div className={style.galleryNext}>*/}
+                {/*    <button className={style.galleryNextButton} onClick={() => slideTo(current + 1)} />*/}
+                {/*</div>*/}
             </div>
 
             <nav className={style.galleryDotNav}>

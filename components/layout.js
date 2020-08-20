@@ -1,12 +1,17 @@
 import style from '../styles/Home.module.css'
 import BurgerButton from './burger-button'
-import {pages} from '../lib/data'
+import {pages, address} from '../lib/data'
 import {PageLink} from './page-link'
 import {useToggle} from '../lib/util'
 import Link from 'next/link'
+import {useEffect, useState} from 'react'
 
 export default function Layout({leftHeading, rightHeading, children, mainClassName, rightHeadingSmallscreen}) {
     const [siteNavVisible, toggleSiteNav] = useToggle(false)
+    const [dprClass, setDprClass] = useState('')
+    useEffect(() => {
+        setDprClass(window.devicePixelRatio > 1 ? style.dpr2 : '')
+    })
 
     const siteNavClass = `${style.offCanvas} ${siteNavVisible ? style.offCanvasOpen : style.offCanvasClosed}`
     const mainClass = [style.main, mainClassName].filter(_ => _).join(' ')
@@ -15,7 +20,7 @@ export default function Layout({leftHeading, rightHeading, children, mainClassNa
         rightHeadingSmallscreen = rightHeading
 
     return (
-        <div className={style.container}>
+        <div className={style.container + ' ' + dprClass}>
             <header className={style.header}>
                 <Link href='/'>
                     <a>
@@ -41,8 +46,8 @@ export default function Layout({leftHeading, rightHeading, children, mainClassNa
                 </ul>
 
                 <div className={style.contactLinks}>
-                    <a className={style.link} href="mailto:a.vogelsanger@complus.ch">a.vogelsanger@complus.ch</a><br />
-                    <a className={style.link} href="tel:+41765053030">+41 76 505 30 30</a>
+                    <a className={style.link} href={address.email.link}>{address.email.text}</a><br />
+                    <a className={style.link} href={address.phone.link}>{address.phone.text}</a>
                 </div>
             </nav>
         </div>
