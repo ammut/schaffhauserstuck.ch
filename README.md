@@ -14,15 +14,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Deployment
 
-The goal is to keep it completely static so the website can be hosted and served by apache on my personal server.
+The goal is to keep it completely static, so the website can be hosted and served by apache on my personal server.
 
 To build, run:
 
 ```bash
-next build && next export
+npm run build
 ```
 
-The result will be in `./out`. Zip it and ship it.
+The result will be in `./schaffhauserstuck.tar.gz`, ready to ship.
 
 To serve from apache, a few things are in order. Fortunately, the links are all without the `.html` suffix, so all we should have to do really, is make a rewrite from `/^(.+).html$/` to `$1`, to help apache resolve the file, basically. For SEO purposes, however, we also add a `302 Found` rewrite for the same thing. In apache-lingo:
 
