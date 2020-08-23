@@ -20,12 +20,14 @@ export default function CeilingMap({enableZoom = false}) {
 
         const projection = 'stuckdecke'
 
+        const dpr = window.devicePixelRatio > 1 ? 2 : 1
+        const url = dpr === 2 ? '/Front/2x/{z}/{x}/{y}.jpg' : '/Front/{z}/{x}/{y}.jpg'
+
         addProjection(new Projection({
             code: projection,
             units: 'pixels',
             extent: extent,
         }))
-
         let view
         let map = new Map({
             target: target.current,
@@ -36,8 +38,9 @@ export default function CeilingMap({enableZoom = false}) {
 
                     source: new XYZ({
                         projection: projection,
-                        url: '/Front/{z}/{x}/{y}.jpg',
+                        url: url,
                         maxResolution: 128, // resolution at zoom:0
+                        tilePixelRatio: dpr,
                     }),
                 })
             ],

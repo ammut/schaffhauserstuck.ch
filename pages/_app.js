@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import 'ol/ol.css'
 import 'react-image-gallery/styles/css/image-gallery.css'
 
 
