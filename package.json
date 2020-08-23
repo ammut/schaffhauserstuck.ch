@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "lodash.throttle": "^4.1.1",
-    "next": "9.5.0",
-    "ol": "6.4.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "next": "^9.5.0",
+    "ol": "^6.4.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-image-gallery": "^1.0.8"
   },
   "devDependencies": {
