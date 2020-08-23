@@ -8,7 +8,6 @@ import style from '../styles/Home.module.css'
 import {addProjection} from 'ol/proj'
 import {defaults} from 'ol/interaction'
 
-// todo: make hidpi
 export default function CeilingMap({enableZoom = false}) {
     const target = useRef()
     useEffect(() => {
