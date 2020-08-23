@@ -289,6 +289,27 @@
   right: 0;
 }
 
+.galleryPrevButton, .galleryNextButton {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.galleryPrevButton {
+  left: 0;
+  cursor: url("/Cursor_Prev.png") 16 16, e-resize;
+}
+
+.galleryNextButton {
+  right: 0;
+  cursor: url("/Cursor_Next.png") 0 16, e-resize;
+}
+
 .galleryDotNav {
   display: flex;
   justify-content: center;
@@ -308,15 +329,6 @@
 
 .galleryDotActive {
   background-color: black;
-}
-
-.galleryWrapper {
-  position: relative;
-  cursor: url("/Cursor.png") 16 16, e-resize;
-}
-
-.dpr2 .galleryWrapper {
-  /*cursor: url("/Cursor@2x.png") 33 31, e-resize;*/
 }
 
 .galleryCard {

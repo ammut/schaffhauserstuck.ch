@@ -51,7 +51,7 @@ export default function Gallery({images}) {
 
     return (
         <div className={style.gallery}>
-            <div className={style.galleryWrapper} onClick={() => slideTo(current + 1)}>
+            <div className={style.galleryWrapper}>
                 <ImageGallery
                     items={items}
                     renderItem={renderItem}
@@ -65,12 +65,8 @@ export default function Gallery({images}) {
                     onBeforeSlide={onBeforeSlide}
                     ref={gallery}
                 />
-                {/*<div className={style.galleryPrev}>*/}
-                {/*    <button className={style.galleryPrevButton} onClick={() => slideTo(current - 1)} />*/}
-                {/*</div>*/}
-                {/*<div className={style.galleryNext}>*/}
-                {/*    <button className={style.galleryNextButton} onClick={() => slideTo(current + 1)} />*/}
-                {/*</div>*/}
+                <button className={style.galleryPrevButton} onClick={() => slideTo(current - 1)} />
+                <button className={style.galleryNextButton} onClick={() => slideTo(current + 1)} />
             </div>
 
             <nav className={style.galleryDotNav}>
