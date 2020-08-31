@@ -4,23 +4,28 @@ import {address, portrait} from '../lib/data'
 
 
 export default function Portrait() {
+    const contactInfo = <>
+        <h3>Kontakt</h3>
+        <a className={style.link} href={address.email.link}>{address.email.text}</a><br/>
+        <a className={style.link} href={address.phone.link}>{address.phone.text}</a><br/>
+        {address.name} <br/>
+        {address.street} <br/>
+        {address.town}
+    </>
+
     return (
         <Layout rightHeading='Portrait'>
             <div className={style.outerGutter}>
                 <div className={style.innerGutter}>
                     <div className={style.intro}>
-                        <img src="/Portrait/Portrait_Andreas_Vogelsanger.jpg" alt="Andreas Vogelsanger bei der Arbeit an einer Stuckaturdecke"/>
+                        <img src="/Portrait/Portrait_Andreas_Vogelsanger.jpg"
+                             alt="Andreas Vogelsanger bei der Arbeit an einer Stuckaturdecke"/>
                     </div>
                     <div className={style.intro}>
                         {portrait.intro}
                     </div>
-                    <div className={style.portraitKontakt} >
-                        <h3>Kontakt</h3>
-                        <a className={style.link} href={address.email.link}>{address.email.text}</a><br />
-                        <a className={style.link} href={address.phone.link}>{address.phone.text}</a><br />
-                        {address.name} <br />
-                        {address.street} <br />
-                        {address.town}
+                    <div className={style.portraitKontakt}>
+                        {contactInfo}
                     </div>
                     <div className={style.portraitWerdegang}>
                         <h3>{portrait.cv.title}</h3>
@@ -34,12 +39,7 @@ export default function Portrait() {
 
                 <SideBar>
                     <div>
-                        <h3>Kontakt</h3>
-                        <a className={style.link} href="mailto:a.vogelsanger@complus.ch">a.vogelsanger@complus.ch</a><br />
-                        <a className={style.link} href="tel:+41765053030">+41 76 505 30 30</a><br />
-                        Andreas Vogelsanger <br />
-                        Rosengasse 16 <br />
-                        8200 Schaffhausen
+                        {contactInfo}
                     </div>
                 </SideBar>
             </div>
