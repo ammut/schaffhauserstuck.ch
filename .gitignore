@@ -13,7 +13,8 @@
 /out/
 
 # production
-/build
+/schaffhauserstuck.ch
+/schaffhauserstuck.ch.tar.gz
 
 # misc
 .DS_Store
