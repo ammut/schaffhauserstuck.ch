@@ -20,16 +20,20 @@ export default function Gallery({images}) {
 
     function renderItem(item) {
         return (
-            <img
-                src={loaded[item.index] ? item.original : undefined}
-                alt=""
-                className={style.galleryImage}
-                // onMouseDown={preventDefault}
-                style={{backgroundImage: `url(${item.lqip})`}}
-                width={1500}
-                height={897}
-                onTouchMove={undefined}
-            />
+            <div className={style.galleryImageWrapper}>
+                <img
+                    src={loaded[item.index] ? item.original : undefined}
+                    alt=""
+                    className={style.galleryImage}
+                    // onMouseDown={preventDefault}
+                    style={{backgroundImage: `url(${item.lqip})`}}
+                    width={1500}
+                    height={897}
+                    onTouchMove={undefined}
+                />
+                <button className={style.galleryPrevButton} onClick={() => slideTo(current - 1)} />
+                <button className={style.galleryNextButton} onClick={() => slideTo(current + 1)} />
+            </div>
         )
     }
 
@@ -65,8 +69,6 @@ export default function Gallery({images}) {
                     onBeforeSlide={onBeforeSlide}
                     ref={gallery}
                 />
-                <button className={style.galleryPrevButton} onClick={() => slideTo(current - 1)} />
-                <button className={style.galleryNextButton} onClick={() => slideTo(current + 1)} />
             </div>
 
             <nav className={style.galleryDotNav}>
